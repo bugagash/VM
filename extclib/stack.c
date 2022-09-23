@@ -30,6 +30,7 @@ extern Stack* new_stack(size_t size, vtype_t tvalue) {
 }
 
 extern void free_stack(Stack *stack) {
+	_free_stack(stack);
 	free(stack->buffer);
 	free(stack);
 }
@@ -47,7 +48,7 @@ extern value_t get_stack(Stack *stack, size_t index) {
 	if (index >= stack->index) {
 		fprintf(stderr, "%s\n", "error: index out of range");
 		value_t none = {
-			.decimal = 0;
+			.decimal = 0,
 		};
 		return none;
 	}
@@ -58,17 +59,17 @@ extern value_t pop_stack(Stack *stack) {
 	if (stack->index == 0) {
 		fprintf(stderr, "%s\n", "error: poping empty stack");
 		value_t none = {
-			.decimal = 0;
+			.decimal = 0,
 		};
 		return none;
 	}
-	stack.index -= 1;
+	stack->index -= 1;
 	return stack->buffer[stack->index];
 }
 
 static void _insert_stack(Stack *stack, size_t index, void *value) {
 	if (index >= stack->size) {
-		fprintf(stderr, "%s\n", "error: index out of range");
+		fprintf(stderr, "%s\n", "error: stack overflow");
 		return;
 	}
 	switch(stack->tvalue) {
@@ -91,7 +92,7 @@ static void _insert_stack(Stack *stack, size_t index, void *value) {
 
 
 static void _free_stack(Stack *stack) {
-	switch(stck->tvalue) {
+	switch(stack->tvalue) {
 		case STRING_TYPE:
 			for (size_t i = 0; i < stack->index; ++i) {
 				free(stack->buffer[i].string);

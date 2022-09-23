@@ -10,13 +10,13 @@ typedef enum vtype_t {
 } vtype_t;
 
 typedef union value_t {
-	int32_t decimal,
-	double real,
-	char *string,
+	int32_t decimal;
+	double real;
+	char *string;
 } value_t;
 
-extern void *decimal(int32_t x);
-extern void *string(char *x);
-extern void *real(double x);
+extern void* decimal(int32_t x);
+extern void* string(char *x);
+extern void* real(double x);
 
 #endif
