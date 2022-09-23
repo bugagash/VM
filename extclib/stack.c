@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdint.h>
 #include "type.h"
 
 typedef struct Stack {
@@ -7,7 +9,7 @@ typedef struct Stack {
 	value_t *buffer;
 	size_t size;
 	size_t index;
-};
+} Stack;
 
 static void _insert_stack(Stack *stack, size_t index, void *value);
 static void _free_stack(Stack *stack);
@@ -95,6 +97,7 @@ static void _free_stack(Stack *stack) {
 				free(stack->buffer[i].string);
 			}
 		break;
+		default: ;
 	}
 }
 
