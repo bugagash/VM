@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef EXTCLIB_STACK_H_
 #define EXTCLIB_STACK_H_
 

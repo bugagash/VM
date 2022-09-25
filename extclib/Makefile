@@ -1,18 +1,9 @@
 CC=gcc
-LN=ld
-
-CFALGS=-Wall -Wextra
-
-HEADERS=stack.h type.h
-SOURCES=stack.c type.c
-OBJECTS=stack.o type.o
-
-.PHONY: default buidlink clean
-default: build link
-
-build: $(HEADERS) $(SOURCES)
-	$(CC) $(OPT) $(CFALGS) -c $(SOURCES)
-link: $(OBJECTS)
-	$(LN) -r $(OBJECTS) -o extclib.o
-clean:
-	rm -f *.o *.i *.s
+.PHONY: default build run
+default: build run
+build: main.c
+	$(CC) main.c b_tree.c -o main
+run: main
+	./main
+main.c:
+	$(error "undefined main.c")

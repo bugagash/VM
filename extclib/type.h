@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef EXTCLIB_TYPE_H_
 #define EXTCLIB_TYPE_H_
 
